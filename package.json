@@ -1,0 +1,33 @@
+{
+  "name": "webscrapes_async",
+  "version": "1.0.0",
+  "description": "web scraping using cheerio. Practising solutions with async code",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjamesy/super-octo-guacamole.git"
+  },
+  "keywords": [
+    "cheerio.js",
+    "promises",
+    "async",
+    "await"
+  ],
+  "author": "james",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjamesy/super-octo-guacamole/issues"
+  },
+  "homepage": "https://github.com/bjamesy/super-octo-guacamole#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}

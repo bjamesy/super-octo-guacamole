@@ -1,0 +1,17 @@
+<% films.forEach(function(films){ %>
+    <div>
+        <h1><strong><%= films.title %></strong></h1>
+    </div>
+
+    <% films.screenings.forEach(function(screenings){ %>
+        <div><h4><%= screenings.theatre %></h4></div>
+        <div><h4><%= screenings.location %></h4></div>
+        <div><h4><%= screenings.time %></h4></div>
+        <div><a href="<%= screenings.link %>">buy tickets here</a></div>
+
+        <% screenings.types.forEach(function(types){ %>
+            <div><h4><%= types.type %></h4></div>
+            <div><h4><%= types.time %></h4></div>
+        <% }); %>  
+    <% }); %>
+<% }); %>
