@@ -7,11 +7,11 @@ var request      = require('request'),
 
 // vvvvvvvvvvvv Functions aiding the creation of types
 var typeSeeds = []
+var times = [];
 function Seed(types, times){
     this.type = types;
     this.time = times
 };
-var times = [];
 // ^^^^^^^^^^^^ Functions aiding the creation of types
     
 module.exports = (() => {
@@ -48,24 +48,36 @@ module.exports = (() => {
                     typeSeeds.push(new Seed(types, times));
                     times = [];
                 });
-                console.log(typeSeeds);
-                // had to included typeSeeds here as a parameter in seeDB() since the array  
-                // was being set to empty prior to being created as an instance of Type
-                async function seedDB(typeSeeds){
-                    try {
-                        let film = await Film.create({title: title});
-                        let screening = await Screening.create({theatre: theatre, link: link});
-                        for(const typeSeed of typeSeeds){
-                            let type = await Type.create(typeSeed);
-                            screening.types.push(type);    
+                // callback solution goes here ! 
+                function seedDB(typeSeeds){
+                    Film.create({title: title}, function(err, film){
+                        if(err){
+                            console.log(err);
+                        } else {
+                            console.log('film created');
+                            Screening.create({theatre: theatre, link: link}, function(err, screening){
+                                if(err){
+                                    console.log(err);
+                                } else {
+                                    console.log('screening created');
+                                    for(const typeSeed of typeSeeds){
+                                        Type.create(typeSeed, function(err, type){
+                                            if(err){
+                                                console.log(err);
+                                            } else {
+                                                screening.types.push(type);
+                                                console.log('type created');
+                                            }
+                                        })
+                                    }      
+                                screening.save();
+                                film.screenings.push(screening);
+                                film.save();
+                                console.log('film saved!!!!!!!!!!');
+                                }
+                            })            
                         }
-                        screening.save();
-                        film.screenings.push(screening);
-                        film.save();
-                        console.log("film created lets see if this worked ... gulp");     
-                    } catch(err) {
-                        console.log(err);
-                    }
+                    });    
                 }
                 seedDB(typeSeeds);
                 times = [];     
