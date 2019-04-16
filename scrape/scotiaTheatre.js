@@ -65,15 +65,16 @@ module.exports = (() => {
                                             if(err){
                                                 console.log(err);
                                             } else {
+                                                type.save();
                                                 screening.types.push(type);
+                                                screening.save();
                                                 console.log('type created');
                                             }
                                         })
                                     }      
-                                screening.save();
-                                film.screenings.push(screening);
-                                film.save();
-                                console.log('film saved!!!!!!!!!!');
+                                    film.screenings.push(screening);
+                                    film.save();
+                                    console.log('film saved!!!!!!!!!!');
                                 }
                             })            
                         }

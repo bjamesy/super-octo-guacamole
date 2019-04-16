@@ -5,7 +5,7 @@ var express       = require('express'),
     cheerio       = require('cheerio'),
     Film          = require('./models/film'),
     Screening     = require('./models/screening'),
-    Type          = require('./models/type')
+    Type          = require('./models/type'),
     scotiaTheatre = require('./scrape/scotiaTheatre');
     
 app.set('view engine', 'ejs');
