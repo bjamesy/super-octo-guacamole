@@ -1,0 +1,10 @@
+<% films.forEach(function(films){ %>
+    <div>
+        <h1><strong><%= films.title %></strong></h1>
+        <h3><%= films.theatre %></h3>
+        <a href='<%= films.link %>'>Click to purchase tickets</a>
+        <h3><%= films.type %></h3>
+        <p><%= films.times %></p>
+        <hr>
+    </div>
+<% }); %>
